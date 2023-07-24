@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 				for (t = count; t < count + lenf; t++)
 					copy[t] = str[m++];
 			}
-			else if (format [i] == 'c')
+			else if (format[i] == 'c')
 				copy[count++] = (char)va_arg(arg1, int);
 			else
 			{
