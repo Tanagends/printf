@@ -41,8 +41,17 @@ int _printf(const char *format, ...)
 			copy[count++] = format[i];
 		i++;
 	}
-	if (count > 0)
-		write(1, &copy[0], count);
+	print_buffer(copy, count);
 	va_end(arg1);
 	return (count);
+}
+/**
+ * print_buffer - prints buffer.
+ * @buffer: char array.
+ * @count: array count.
+ */
+void print_buffer(char buffer[],size_t count)
+{
+	if (count > 0)
+		write(1, buffer, count);
 }
