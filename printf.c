@@ -8,12 +8,12 @@ int _printf(const char *format, ...)
 {
 	size_t i = 0, count = 0, t, m, lenf;
 	va_list arg1;
-	const char *copy[BUFF-SIZE];
+	char copy[BUFFSIZE];
 	const char *str;
 
 	va_start(arg1, format);
 	if (format == NULL)
-		exit(EXIT_FAILURE);
+		return (-1);
 	while (format[i])
 	{
 		if (format[i] == '%')
@@ -21,21 +21,20 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == 's')
 			{
-				f = va_arg(arg1, char *);
-				lenf = 0, lenc = 0;
-				while (f[lenf++])
+				str = va_arg(arg1, char *);
+				lenf = 0;
+				while (str[lenf++])
 					count++;
 				m = 0;
 				for (t = count; t < count + lenf; t++)
 					copy[t] = str[m++];
 			}
 			else if (format [i] == 'c')
-			{
-				copy[count++] = va_arg(arg1, char);
+				copy[count++] = (char)va_arg(arg1, int);
 			else
 			{
-				copy[count++] = format(--i);
-				copy[count++] = format(++i);
+				copy[count++] = format[--i];
+				copy[count++] = format[++i];
 			}
 		}
 		else

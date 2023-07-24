@@ -2,6 +2,7 @@
 #define MACRO_H
 #include <stdarg.h>
 #include <stdlib.h>
-#define BUFF-SIZE 1024
+#include <unistd.h>
+#define BUFFSIZE 1024
 int _printf(const char *format, ...);
 #endif
