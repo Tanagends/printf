@@ -6,7 +6,7 @@
  */
 int _printf(const char *format, ...)
 {
-	size_t i = 0, k = 0, count = 0, t, m, lenf;
+	size_t i = 0, count = 0, t, m, lenf;
 	va_list arg1;
 	const char *copy[BUFF-SIZE];
 	const char *str;
@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		exit(EXIT_FAILURE);
 	while (format[i])
-	{ 
+	{
 		if (format[i] == '%')
 		{
 			i++;
