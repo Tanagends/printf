@@ -41,6 +41,8 @@ int _printf(const char *format, ...)
 			copy[count++] = format[i];
 		i++;
 	}
-	write(1, copy, count);
+	if (count > 0)
+		write(1, &copy[0], count);
+	va_end(arg1);
 	return (count);
 }
