@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 
 	va_start(arg1, format);
 	if (format == NULL)
-		return (-1);
+		exit(EXIT_FAILURE);
 	while (format[i] && count < BUFFSIZE)
 	{
 		if (format[i] == '%')
