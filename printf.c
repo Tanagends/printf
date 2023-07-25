@@ -6,7 +6,7 @@
  */
 int _printf(const char *format, ...)
 {
-	size_t i = 0, count = 0, t, m, lenf;
+	size_t i = 0, count = 0, t, m, lenstr;
 	va_list arg1;
 	char copy[BUFFSIZE];
 	const char *str;
@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 	va_start(arg1, format);
 	if (format == NULL)
 		return (-1);
-	while (format[i])
+	while (format[i] && count < BUFFSIZE)
 	{
 		if (format[i] == '%')
 		{
@@ -22,11 +22,11 @@ int _printf(const char *format, ...)
 			if (format[i] == 's')
 			{
 				str = va_arg(arg1, char *);
-				lenf = 0;
-				while (str[lenf++])
+				lenstr = 0;
+				while (str[lenstr++])
 					count++;
 				m = 0;
-				for (t = count; t < count + lenf; t++)
+				for (t = count; t < count + lenstr; t++)
 					copy[t] = str[m++];
 			}
 			else if (format[i] == 'c')
@@ -41,17 +41,7 @@ int _printf(const char *format, ...)
 			copy[count++] = format[i];
 		i++;
 	}
-	print_buffer(copy, count);
 	va_end(arg1);
+	write(1, copy, count);
 	return (count);
-}
-/**
- * print_buffer - prints buffer.
- * @buffer: char array.
- * @count: array count.
- */
-void print_buffer(char buffer[],size_t count)
-{
-	if (count > 0)
-		write(1, buffer, count);
 }
