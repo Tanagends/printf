@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 			{
 				str = va_arg(arg1, char *);
 				lenstr = 0;
-				while (str[lenstr++])
+				while (str[lenstr++] != '\0')
 					count++;
 				m = 0;
 				for (t = count; t < count + lenstr; t++)
